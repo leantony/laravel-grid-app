@@ -17,13 +17,119 @@ var _grid = {};
                 timeout: 100
             },
             pjax: {
-                afterPjax: function () {},
+                afterPjax: function () {
+                },
                 pjaxOptions: {
                     container: id
                 }
             }
         };
         this.opts = $.extend({}, defaults, opts || {});
+    };
+
+    /**
+     * Block UI. call this at the start of an ajax request
+     * @param message
+     */
+    grid.prototype.startBlockUI = function (message) {
+        if (typeof message === 'undefined') {
+            message = 'Please wait ...';
+        }
+        var content = '<span id="bui">' + message + '</span>';
+        $.blockUI({
+            message: content,
+            css: {
+                border: 'none', padding: '15px',
+                backgroundColor: '#333C44',
+                '-webkit-border-radius': '3px',
+                '-moz-border-radius': '3px',
+                opacity: 1, color: '#fff'
+            },
+            overlayCSS: {
+                backgroundColor: '#000',
+                opacity: 0.4,
+                cursor: 'wait',
+                'z-index': 1030
+            }
+        });
+    };
+
+    /**
+     * Unblock UI
+     */
+    grid.prototype.stopBlockUI = function () {
+        $.unblockUI();
+    };
+
+    /**
+     * send an ajax request quickly via a link, etc
+     *
+     * @param element
+     * @param event
+     */
+    grid.prototype.executeAjaxRequest = function (element, event) {
+        // click or submit
+        event = event || 'click';
+        var $this = this;
+
+        // do not do anything if we have nothing to work with
+        if (element.length < 1) return;
+
+        // since our refs are data-remote or class with data-remote, we need to loop
+        element.each(function (i, obj) {
+            obj = $(obj);
+            var confirmation = obj.data('confirm');
+            // check if we need to refresh any pjax container
+            var pjaxContainer = obj.data('pjax-target');
+            // check if we need to force a page refresh. will override shouldPjax
+            var refresh = obj.data('refresh-page');
+            // a form
+            var isForm = obj.is('form');
+            // prevent or enable blocking of UI
+            var blockUi = obj.data('block-ui') || true;
+            // custom block UI msg
+            var waitingMsg = obj.data('waiting-message');
+
+            // console.log([event, isForm, obj.attr('action')]);
+            obj.on(event, function (e) {
+                e.preventDefault();
+                // check for a confirmation message
+                if (confirmation) {
+                    if (!confirm(confirmation)) {
+                        return;
+                    }
+                }
+                $.ajax({
+                    method: isForm ? obj.attr('method') : (obj.data('method') || 'POST'),
+                    url: isForm ? obj.attr('action') : obj.attr('href'),
+                    data: isForm ? obj.serialize() : null,
+                    beforeSend: function () {
+                        if (blockUi) {
+                            $this.startBlockUI(waitingMsg || 'Please wait ...')
+                        }
+                    },
+                    complete: function () {
+                        if (blockUi) {
+                            $this.stopBlockUI();
+                        }
+                    },
+                    success: function (data) {
+                        // reload a pjax container
+                        if (pjaxContainer) {
+                            $.pjax.reload({container: pjaxContainer});
+                        }
+                    },
+                    error: function (data) {
+                        // handle errors gracefully
+                        if (typeof toastr !== 'undefined') {
+                            toastr.error("An error occurred", "Whoops!");
+                        }
+                        console.error("An error occurred");
+                    }
+                });
+            });
+        });
+
     };
 
     /**
@@ -45,15 +151,15 @@ var _grid = {};
     /**
      * Enable pjax
      *
-     * @param container
-     * @param target
-     * @param afterPjax
+     * @param container the root element for which html contents shall be replaced
+     * @param target the element in the root element that will trigger the pjax request
+     * @param afterPjax a function that will be executed after the pjax request is done
      * @param options
      */
     grid.prototype.setupPjax = function (container, target, afterPjax, options) {
         // global timeout
         $.pjax.defaults.timeout = options.timeout || 3000;
-        $(container).pjax(target, options);
+        $(document).pjax(target, container, options);
         // do sth when the pjax request is done. Like reload plugins
         $(document).on('pjax:complete', function () {
             afterPjax();
@@ -124,7 +230,5 @@ var _grid = {};
         var obj = new grid(options);
         obj.bindPjax();
         obj.tableLinks();
-        obj.filter();
-        obj.search();
     };
 })(jQuery);

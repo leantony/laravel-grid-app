@@ -93,7 +93,7 @@
                         <th class="min-width nowrap"></th>
                     </tr>
                     <tr>
-                        @include('leantony::html.grid.filter', ['rows' => $rows, 'filterUrl' => $grid->getSearchRoute(), 'id' => $grid->getFilterFormId()])
+                        @include('leantony::grid.filter', ['rows' => $rows, 'filterUrl' => $grid->getSearchRoute(), 'id' => $grid->getFilterFormId()])
                     </tr>
                     </thead>
                     <tbody>
@@ -119,21 +119,21 @@
                                         @foreach($rows as $row)
                                             @if(is_callable($row->data))
                                                 @if($row->raw)
-                                                    <td>
+                                                    <td class="{{ $row->cssClass }}">
                                                         {!! call_user_func($row->data, $item, $row->key) !!}
                                                     </td>
                                                 @else
-                                                    <td>
+                                                    <td class="{{ $row->cssClass }}">
                                                         {{ call_user_func($row->data , $item, $row->key) }}
                                                     </td>
                                                 @endif
                                             @else
                                                 @if($row->raw)
-                                                    <td>
+                                                    <td class="{{ $row->cssClass }}">
                                                         {!! $item->{$row->key} !!}
                                                     </td>
                                                 @else
-                                                    <td>
+                                                    <td class="{{ $row->cssClass }}">
                                                         {{ $item->{$row->key} }}
                                                     </td>
                                                 @endif
@@ -153,8 +153,9 @@
                     </tbody>
                 </table>
                 @if($grid->wantsPagination())
+                    <hr>
                     <div class="center">
-                        {{ $grid->getData()->appends(request()->query())->links('leantony::html.grid.pagination.default', ['pjaxTarget' => $grid->getId()]) }}
+                        {{ $grid->getData()->appends(request()->query())->links('leantony::grid.pagination.default', ['pjaxTarget' => $grid->getId()]) }}
                     </div><!-- /.center -->
                 @endif
             </div>

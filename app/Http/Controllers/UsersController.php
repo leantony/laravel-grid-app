@@ -25,17 +25,28 @@ class UsersController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $data = [
+            'model' => class_basename(User::class),
+            'route' => route('users.create'),
+            'action' => 'create',
+            'dataVars' => [
+                'pjax-target' => '#' . $request->get('ref')
+            ]
+        ];
+
+        // modal
+        return view('users_modal', $data)->render();
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -46,18 +57,33 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
-        //
+        $user = User::query()->findOrFail($id);
+
+        $data = [
+            'model' => class_basename(User::class),
+            'route' => route('users.update', ['user' => $user->id]),
+            'data' => $user,
+            'dataVars' => [
+                'pjax-target' => '#' . $request->get('ref')
+            ],
+            'method' => 'patch',
+            'action' => 'update'
+        ];
+
+        // modal
+        return view('users_modal', $data)->render();
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -68,8 +94,8 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -80,7 +106,7 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

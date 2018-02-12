@@ -9,7 +9,7 @@
                 <input type="text" class="form-control" name="{{ $name }}"
                        placeholder="{{ $placeholder }}" value="{{ request($name) }}"/>
                 <span class="input-group-btn">
-                        <button class="btn btn-info btn-lg" type="submit">
+                        <button class="btn btn-info" type="submit">
                             <i class="glyphicon glyphicon-search"></i>
                         </button>
                     </span>

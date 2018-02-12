@@ -12,38 +12,44 @@ var _modal = {};
             form_id: 'modal_form',
             // the class of the element that will trigger the modal. typically a link
             modalTriggerSelector: '.show_modal_form',
+            // when the modal is shown
             onShown: function (e, modal) {
-                // do sth once the modal is shown
+                if (modal) {
+                    if (modal.options.onShown) {
+                        modal.options.onShown(e);
+                    }
+                }
             },
             onHidden: function (e, modal) {
                 $(this).removeData('bs.modal');
             },
             onShow: function (e, modal) {
                 // display a loader, when the modal is being displayed
-                var spinner_content = '<div class="row"><div class="col-md-12"><i class="fa fa-spinner fa-5x fa-spin text-info"></i></div></div>';
+                var spinner_content = '<div class="row"><div class="col-md-12"><div class="text-center"><i class="fa fa-spinner fa-6x fa-spin color-primary mt30"></i></div></div></div>';
                 $('#' + modal.options.modal_id).find('.modal-content').html(spinner_content);
             },
             onLoaded: function (e, modal) {
-                // load any extras
+                if (modal.options.onLoaded) {
+                    modal.options.onLoaded(e);
+                }
             }
         };
         this.options = $.extend({}, defaultOptions, options || {});
     };
 
     /**
-     * Display the modal. This will send an AJAX request to an endpoint, that returns html. E.g a form
-     * The html will be rendered in the modal container specified, by the ID
+     * show the modal
      */
     modal.prototype.show = function () {
         var $this = this;
         var modal_id = $this.options.modal_id;
         var clickHandler = function (e) {
             var modal_size = $(e).data('modal-size');
-            if (modal_size) {
-                $('#' + modal_id).find('.modal-dialog').addClass(modal_size);
-            }
-            var url = $(e).attr('href');
             var modal = $('#' + modal_id);
+            if (!modal_size) {
+                modal.find('.modal-dialog').addClass(modal_size);
+            }
+            var url = $(e).attr('href') || $(e).data('url');
             modal
                 .on('shown.bs.modal', function () {
                     $this.options.onShown.call(this, e, $this);
@@ -183,7 +189,7 @@ var _modal = {};
             });
         };
 
-        $('#' + $this.options.modal_id).off("click.leantony.modal").on("click.leantony.modal", '#' + $this.options.form_id + ' button[type="submit"]', function (e) {
+        $('#' + $this.options.modal_id).off("click").on("click", '#' + $this.options.form_id + ' button[type="submit"]', function (e) {
             e.preventDefault();
             submit_form(this);
         });

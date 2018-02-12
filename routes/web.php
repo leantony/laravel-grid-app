@@ -11,7 +11,5 @@
 |
 */
 
-Route::get('/', ['uses' => 'UsersController@index', 'as' => 'users.index']);
-Route::get('/create', ['uses' => 'UsersController@create', 'as' => 'users.create']);
-Route::get('/view', ['uses' => 'UsersController@view', 'as' => 'users.view']);
-Route::delete('/delete', ['uses' => 'UsersController@delete', 'as' => 'users.delete']);
+Route::get('/', ['uses' => 'UsersController@index']);
+Route::resource('users', 'UsersController');

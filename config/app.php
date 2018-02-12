@@ -151,6 +151,8 @@ return [
          * Package Service Providers...
          */
 
+        TheAvengers\BootForms\BootFormsServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -209,6 +211,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'BootForm' => TheAvengers\BootForms\Facades\BootForm::class,
     ],
 
 ];

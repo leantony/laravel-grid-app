@@ -13,7 +13,7 @@
         {!! BootForm::bind($data) !!}
     @endif
     {!! BootForm::text('Name', 'name') !!}
-    {!! BootForm::textArea('Description', 'description') !!}
+    {!! BootForm::text('Email', 'email') !!}
 </div>
 <div class="modal-footer">
     <button type="button" class="btn-dismiss" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;{{ 'Close' }}</button>
