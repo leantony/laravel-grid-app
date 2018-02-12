@@ -174,8 +174,6 @@
                 dateRangeSelector: '.date-range',
                 searchForm: searchForm,
                 pjax: {
-                    afterPjax: function () {
-                    },
                     pjaxOptions: {}
                 },
                 linkables: {

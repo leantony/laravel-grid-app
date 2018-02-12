@@ -17,11 +17,7 @@ var _grid = {};
                 timeout: 100
             },
             pjax: {
-                afterPjax: function () {
-                },
-                pjaxOptions: {
-                    container: id
-                }
+                pjaxOptions: {}
             }
         };
         this.opts = $.extend({}, defaults, opts || {});
@@ -159,11 +155,7 @@ var _grid = {};
     grid.prototype.setupPjax = function (container, target, afterPjax, options) {
         // global timeout
         $.pjax.defaults.timeout = options.timeout || 3000;
-        $(document).pjax(target, container, options);
-        // do sth when the pjax request is done. Like reload plugins
-        $(document).on('pjax:complete', function () {
-            afterPjax();
-        });
+        $(document).pjax(target, container, options).on('pjax:end', afterPjax());
     };
 
     /**
@@ -171,7 +163,15 @@ var _grid = {};
      */
     grid.prototype.bindPjax = function () {
         var $this = this;
-        this.setupPjax($this.opts.id, 'a[data-trigger-pjax=1]', $this.opts.pjax.afterPjax, $this.opts.pjax.pjaxOptions);
+        console.log($this.opts.pjax);
+        this.setupPjax(
+            $this.opts.id,
+            'a[data-trigger-pjax=1]',
+            function() {
+                $.pjax.reload({container: $this.opts.id})
+            },
+            $this.opts.pjax.pjaxOptions
+        );
 
         if ($this.opts.dateRangeSelector && typeof moment === 'function') {
             var start = moment().subtract(29, 'days');
@@ -189,16 +189,8 @@ var _grid = {};
         var form = $($this.opts.filterForm);
 
         if (form.length > 0) {
-            form.on('submit', function (e) {
-                e.preventDefault();
-                $.pjax.submit(e, $this.opts.id, {
-                    "push": true,
-                    "data": form.serialize(),
-                    "replace": false,
-                    "timeout": 5000,
-                    "scrollTo": 0,
-                    "maxCacheLength": 30000
-                });
+            $(document).on('submit', $this.opts.filterForm, function(event) {
+                $.pjax.submit(event, $this.opts.id)
             });
         }
     };
@@ -211,17 +203,8 @@ var _grid = {};
         var form = $($this.opts.searchForm);
 
         if (form.length > 0) {
-            form.on('submit', function (e) {
-                "use strict";
-                e.preventDefault();
-                $.pjax.submit(e, $this.opts.id, {
-                    "push": true,
-                    "data": form.serialize(),
-                    "replace": false,
-                    "timeout": 5000,
-                    "scrollTo": 0,
-                    "maxCacheLength": 30000
-                });
+            $(document).on('submit', $this.opts.searchForm, function(event) {
+                $.pjax.submit(event, $this.opts.id)
             });
         }
     };
@@ -230,5 +213,7 @@ var _grid = {};
         var obj = new grid(options);
         obj.bindPjax();
         obj.tableLinks();
+        obj.search();
+        obj.filter();
     };
 })(jQuery);
