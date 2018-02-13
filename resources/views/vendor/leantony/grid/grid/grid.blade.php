@@ -37,65 +37,70 @@
                     </div>
                 </div>
                 <hr>
+                <form action="{{ $grid->getSearchRoute() }}" method="GET" id="{{ $grid->getFilterFormId() }}"></form>
                 <table class="{{ $grid->getClass() }}">
                     <thead>
-                    <tr>
-                        @foreach($rows as $row)
+                        <!-- headers -->
+                        <tr>
+                            @foreach($rows as $row)
 
-                            @if($loop->first)
+                                @if($loop->first)
 
-                                @if($sort = $row->sortable)
-                                    @if(is_callable($grid->getSortUrl()))
-                                        <th class="min-width nowrap" title="click to sort by {{ $row->key }}">
-                                            <a data-trigger-pjax="1" class="data-sort"
-                                               href="{{ call_user_func($grid->getSortUrl(), $row->key) }}">
-                                                {{ $row->name }}
-                                            </a>
-                                        </th>
+                                    @if($sort = $row->sortable)
+                                        @if(is_callable($grid->getSortUrl()))
+                                            <th class="{{ $row->headerClass }}" title="click to sort by {{ $row->key }}">
+                                                <a data-trigger-pjax="1" class="data-sort"
+                                                   href="{{ call_user_func($grid->getSortUrl(), $row->key) }}">
+                                                    {{ $row->name }}
+                                                </a>
+                                            </th>
+                                        @else
+                                            <th class="{{ $row->headerClass }}" title="click to sort by {{ $row->key }}">
+                                                <a data-trigger-pjax="1" class="data-sort"
+                                                   href="{{ route($grid->getSortUrl(), add_query_param([$this->getSortParam() => $row->key])) }}">
+                                                    {{ $row->name }}
+                                                </a>
+                                            </th>
+                                        @endif
                                     @else
-                                        <th class="min-width nowrap" title="click to sort by {{ $row->key }}">
-                                            <a data-trigger-pjax="1" class="data-sort"
-                                               href="{{ route($grid->getSortUrl(), add_query_param([$this->getSortParam() => $row->key])) }}">
-                                                {{ $row->name }}
-                                            </a>
+                                        <th class="{{ $row->headerClass }}">
+                                            {{ $row->name }}
                                         </th>
                                     @endif
                                 @else
-                                    <th class="min-width nowrap">
-                                        {{ $row->name }}
-                                    </th>
-                                @endif
-
-                            @else
-                                @if($sort = $row->sortable)
-                                    @if(is_callable($grid->getSortUrl()))
-                                        <th title="click to sort by {{ $row->key }}">
-                                            <a data-trigger-pjax="1" class="data-sort"
-                                               href="{{ call_user_func($grid->getSortUrl(), $row->key) }}">
-                                                {{ $row->name }}
-                                            </a>
-                                        </th>
+                                    @if($sort = $row->sortable)
+                                        @if(is_callable($grid->getSortUrl()))
+                                            <th title="click to sort by {{ $row->key }}">
+                                                <a data-trigger-pjax="1" class="data-sort"
+                                                   href="{{ call_user_func($grid->getSortUrl(), $row->key) }}">
+                                                    {{ $row->name }}
+                                                </a>
+                                            </th>
+                                        @else
+                                            <th title="click to sort by {{ $row->key }}">
+                                                <a data-trigger-pjax="1" class="data-sort"
+                                                   href="{{ route($grid->getSortUrl(), add_query_param([$this->getSortParam() => $row->key])) }}">
+                                                    {{ $row->name }}
+                                                </a>
+                                            </th>
+                                        @endif
                                     @else
-                                        <th title="click to sort by {{ $row->key }}">
-                                            <a data-trigger-pjax="1" class="data-sort"
-                                               href="{{ route($grid->getSortUrl(), add_query_param([$this->getSortParam() => $row->key])) }}">
-                                                {{ $row->name }}
-                                            </a>
+                                        <th>
+                                            {{ $row->name }}
                                         </th>
                                     @endif
-                                @else
-                                    <th class="min-width nowrap">
-                                        {{ $row->name }}
-                                    </th>
                                 @endif
-                            @endif
-                        @endforeach
-                        <th class="min-width nowrap"></th>
-                    </tr>
-                    <tr>
-                        @include('leantony::grid.filter', ['rows' => $rows, 'filterUrl' => $grid->getSearchRoute(), 'id' => $grid->getFilterFormId()])
-                    </tr>
+                            @endforeach
+                            <th></th>
+                        </tr>
+                        <!-- end headers -->
+                        <!-- filter -->
+                        <tr>
+                            @include('leantony::grid.filter', ['rows' => $rows, 'formId' => $grid->getFilterFormId()])
+                        </tr>
+                        <!-- end filters -->
                     </thead>
+                    <!-- data -->
                     <tbody>
                     @if($grid->hasItems())
                         @if($grid->warnIfEmpty())
@@ -119,30 +124,32 @@
                                         @foreach($rows as $row)
                                             @if(is_callable($row->data))
                                                 @if($row->raw)
-                                                    <td class="{{ $row->cssClass }}">
+                                                    <td class="{{ $row->rowClass }}">
                                                         {!! call_user_func($row->data, $item, $row->key) !!}
                                                     </td>
                                                 @else
-                                                    <td class="{{ $row->cssClass }}">
+                                                    <td class="{{ $row->rowClass }}">
                                                         {{ call_user_func($row->data , $item, $row->key) }}
                                                     </td>
                                                 @endif
                                             @else
                                                 @if($row->raw)
-                                                    <td class="{{ $row->cssClass }}">
+                                                    <td class="{{ $row->rowClass }}">
                                                         {!! $item->{$row->key} !!}
                                                     </td>
                                                 @else
-                                                    <td class="{{ $row->cssClass }}">
+                                                    <td class="{{ $row->rowClass }}">
                                                         {{ $item->{$row->key} }}
                                                     </td>
                                                 @endif
                                             @endif
                                             @if($loop->last)
-                                                <td class="pull-right">
-                                                    @foreach($grid->getButtons('rows') as $button)
-                                                        {!! $button->render(call_user_func($button->getUrlRenderer(), $grid->transformName(), $item, $row->key)) !!}
-                                                    @endforeach
+                                                <td>
+                                                    <div class="pull-right">
+                                                        @foreach($grid->getButtons('rows') as $button)
+                                                            {!! $button->render(call_user_func($button->getUrlRenderer(), $grid->transformName(), $item, $row->key)) !!}
+                                                        @endforeach
+                                                    </div>
                                                 </td>
                                             @endif
                                         @endforeach
@@ -151,13 +158,16 @@
                                 @endif
                                 @endif
                     </tbody>
+                    <!-- end data -->
                 </table>
+                <!-- pagination -->
                 @if($grid->wantsPagination())
                     <hr>
                     <div class="center">
                         {{ $grid->getData()->appends(request()->query())->links('leantony::grid.pagination.default', ['pjaxTarget' => $grid->getId()]) }}
                     </div><!-- /.center -->
                 @endif
+                <!-- end pagination -->
             </div>
         </div>
     </div>

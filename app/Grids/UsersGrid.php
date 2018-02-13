@@ -50,7 +50,11 @@ class UsersGrid extends Grid implements UsersGridInterface
         $this->rows = [
 		    "id" => [
 		        "sort" => true,
-		        "filter" => "text"
+		        "filter" => "text",
+		        "filterOperator" => "=",
+		        "styles" => [
+		            "row" => "col-md-2"
+		        ]
 		    ],
 		    "name" => [
 		        "sort" => true,

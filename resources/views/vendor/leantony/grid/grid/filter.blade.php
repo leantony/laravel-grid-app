@@ -1,17 +1,20 @@
-<form action="{{ $filterUrl }}" method="GET" id="{{ $id }}">
-    @foreach($rows as $row)
-        @if(!$row->filter)
-            <th></th>
-        @else
-            <th style="width: inherit;">
-                {!! $row->filter !!}
-            </th>
-        @endif
-        @if($loop->last)
-            <th style="width: inherit;" class="pull-right">
-                <button type="submit" class="btn btn-secondary" title="filter data">Filter
+@foreach($rows as $row)
+    @if(!$row->filter)
+        <th></th>
+    @else
+        <th>
+            {!! $row->filter !!}
+        </th>
+    @endif
+    @if($loop->last)
+        <th>
+            <div class="pull-right">
+                <button type="submit"
+                        class="btn btn-default"
+                        title="filter data"
+                        form="{{ $formId }}">Filter
                 </button>
-            </th>
-        @endif
-    @endforeach
-</form>
+            </div>
+        </th>
+    @endif
+@endforeach
