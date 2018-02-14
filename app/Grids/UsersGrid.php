@@ -52,11 +52,19 @@ class UsersGrid extends Grid implements UsersGridInterface
 		    "name" => [
 		        "search" => [
 		            "enabled" => true
+		        ],
+		        "filter" => [
+		            "enabled" => false,
+		            "operator" => "="
 		        ]
 		    ],
 		    "email" => [
 		        "search" => [
 		            "enabled" => true
+		        ],
+		        "filter" => [
+		            "enabled" => false,
+		            "operator" => "="
 		        ]
 		    ],
 		    "created_at" => [
@@ -72,11 +80,11 @@ class UsersGrid extends Grid implements UsersGridInterface
     }
 
     /**
-     * Set the links. This are referenced using named routes, for the sake of simplicity
+     * Set the links/routes. This are referenced using named routes, for the sake of simplicity
      *
      * @return void
      */
-    public function setLinks()
+    public function setRoutes()
     {
         // searching, sorting and filtering
         $this->sortRouteName = 'users.index';

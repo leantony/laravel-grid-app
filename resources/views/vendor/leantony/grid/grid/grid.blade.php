@@ -119,12 +119,12 @@
                                     $callback = call_user_func($grid->getLinkableCallback(), $grid->transformName(), $item);
                                 @endphp
                                 @php
-                                    $trClassCallback = call_user_func($grid->transformName(), $item);
+                                    $trClassCallback = call_user_func($grid->getRowCssStyle(), $grid->transformName(), $item);
                                 @endphp
                                 <tr class="{{ trim("linkable " . $trClassCallback) }}" data-url="{{ $callback }}">
                             @else
                                 @php
-                                    $trClassCallback = call_user_func($grid->transformName(), $item);
+                                    $trClassCallback = call_user_func($grid->getRowCssStyle(), $grid->transformName(), $item);
                                 @endphp
                                 <tr class="{{ $trClassCallback }}">
                                     @endif
@@ -199,6 +199,5 @@
                 }
             });
         })(jQuery);
-
     </script>
 @endpush
