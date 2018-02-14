@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "9cd5ae5600895e568004ac5d8961e4cc",
+    "content-hash": "b48deca5f9fe1285b3813659c1de6044",
     "packages": [
         {
             "name": "avengers/bootforms",
@@ -1097,34 +1097,35 @@
             "time": "2018-01-27T16:03:56+00:00"
         },
         {
-            "name": "leantony/laravel_grid",
+            "name": "leantony/laravel-grid",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/leantony/laravel_grid.git",
-                "reference": "d3cedad9db68faf08a2e2b761ea237f738474b3d"
+                "url": "https://github.com/leantony/laravel-grid.git",
+                "reference": "6e9595a879939ed3b5725c91eefce9fde5235996"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leantony/laravel_grid/zipball/d3cedad9db68faf08a2e2b761ea237f738474b3d",
-                "reference": "d3cedad9db68faf08a2e2b761ea237f738474b3d",
+                "url": "https://api.github.com/repos/leantony/laravel-grid/zipball/6e9595a879939ed3b5725c91eefce9fde5235996",
+                "reference": "6e9595a879939ed3b5725c91eefce9fde5235996",
                 "shasum": ""
             },
             "require": {
-                "illuminate/console": "~5.1",
-                "illuminate/contracts": "~5.1",
-                "illuminate/database": "~5.1",
-                "illuminate/http": "~5.1",
-                "illuminate/pagination": "~5.1",
-                "illuminate/support": "~5.1",
-                "illuminate/view": "~5.1"
+                "illuminate/console": "~5.5",
+                "illuminate/contracts": "~5.5",
+                "illuminate/database": "~5.5",
+                "illuminate/http": "~5.5",
+                "illuminate/pagination": "~5.5",
+                "illuminate/support": "~5.5",
+                "illuminate/view": "~5.5"
             },
             "require-dev": {
                 "phpunit/phpunit": "~5.0"
             },
             "suggest": {
                 "avengers/bootforms": "For rapid bootstrap form generation",
-                "maatwebsite/excel": "For exporting grid data as excel/pdf"
+                "maatwebsite/excel": "For exporting grid data as excel/pdf",
+                "spatie/laravel-pjax": "For pjax support on the server side"
             },
             "type": "library",
             "extra": {
@@ -1140,7 +1141,10 @@
                     "Leantony\\Grid\\Providers\\": "src/providers",
                     "Leantony\\Grid\\Commands\\": "src/commands",
                     "Leantony\\Grid\\Buttons\\": "src/buttons",
-                    "Leantony\\Grid\\Filters\\": "src/filters"
+                    "Leantony\\Grid\\Columns\\": "src/columns",
+                    "Leantony\\Grid\\Filters\\": "src/filters",
+                    "Leantony\\Grid\\Routing\\": "src/routing",
+                    "Leantony\\Grid\\Search\\": "src/search"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1153,8 +1157,15 @@
                     "email": "chachaantony@gmail.com"
                 }
             ],
-            "description": "Laravel grid view",
-            "time": "2018-02-13T14:41:27+00:00"
+            "description": "A grid view for laravel, inspired by the yii2 grid widget",
+            "homepage": "https://github.com/leantony/laravel-grid",
+            "keywords": [
+                "grid",
+                "laravel-grid",
+                "leantony",
+                "pjax"
+            ],
+            "time": "2018-02-14T12:47:07+00:00"
         },
         {
             "name": "maatwebsite/excel",
@@ -3065,47 +3076,6 @@
             "time": "2017-07-22T11:58:36+00:00"
         },
         {
-            "name": "dompdf/dompdf",
-            "version": "v0.6.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dompdf/dompdf.git",
-                "reference": "cc06008f75262510ee135b8cbb14e333a309f651"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/cc06008f75262510ee135b8cbb14e333a309f651",
-                "reference": "cc06008f75262510ee135b8cbb14e333a309f651",
-                "shasum": ""
-            },
-            "require": {
-                "phenx/php-font-lib": "0.2.*"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "include/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Ménager",
-                    "email": "fabien.menager@gmail.com"
-                },
-                {
-                    "name": "Brian Sweeney",
-                    "email": "eclecticgeek@gmail.com"
-                }
-            ],
-            "description": "DOMPDF is a CSS 2.1 compliant HTML to PDF converter",
-            "homepage": "https://github.com/dompdf/dompdf",
-            "time": "2015-12-07T04:07:13+00:00"
-        },
-        {
             "name": "filp/whoops",
             "version": "2.1.14",
             "source": {
@@ -3597,40 +3567,6 @@
             ],
             "description": "Library for handling version information and constraints",
             "time": "2017-03-05T17:38:23+00:00"
-        },
-        {
-            "name": "phenx/php-font-lib",
-            "version": "0.2.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/PhenX/php-font-lib.git",
-                "reference": "c30c7fc00a6b0d863e9bb4c5d5dd015298b2dc82"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/PhenX/php-font-lib/zipball/c30c7fc00a6b0d863e9bb4c5d5dd015298b2dc82",
-                "reference": "c30c7fc00a6b0d863e9bb4c5d5dd015298b2dc82",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "classes/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Ménager",
-                    "email": "fabien.menager@gmail.com"
-                }
-            ],
-            "description": "A library to read, parse, export and make subsets of different types of font files.",
-            "homepage": "https://github.com/PhenX/php-font-lib",
-            "time": "2014-02-01T15:22:28+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -4932,7 +4868,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "leantony/laravel_grid": 20
+        "leantony/laravel-grid": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
