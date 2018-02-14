@@ -1098,16 +1098,16 @@
         },
         {
             "name": "leantony/laravel-grid",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/leantony/laravel-grid.git",
-                "reference": "953a391ce67c23311b9bcdf989eaa40b6652c172"
+                "reference": "7739a0518dc015a2dd1c8e58a1364209662b9649"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leantony/laravel-grid/zipball/953a391ce67c23311b9bcdf989eaa40b6652c172",
-                "reference": "953a391ce67c23311b9bcdf989eaa40b6652c172",
+                "url": "https://api.github.com/repos/leantony/laravel-grid/zipball/7739a0518dc015a2dd1c8e58a1364209662b9649",
+                "reference": "7739a0518dc015a2dd1c8e58a1364209662b9649",
                 "shasum": ""
             },
             "require": {
@@ -1133,7 +1133,8 @@
                     "providers": [
                         "Leantony\\Grid\\Providers\\ServiceProvider"
                     ]
-                }
+                },
+                "branch-alias": []
             },
             "autoload": {
                 "psr-4": {
@@ -1165,7 +1166,7 @@
                 "leantony",
                 "pjax"
             ],
-            "time": "2018-02-14T14:44:30+00:00"
+            "time": "2018-02-14T17:47:02+00:00"
         },
         {
             "name": "maatwebsite/excel",
