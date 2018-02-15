@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Grids\UsersGridInterface;
+use App\Grids\UsersGrid;
 use App\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -11,13 +12,12 @@ class UsersController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param UsersGridInterface $usersGrid
      * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index(UsersGridInterface $usersGrid, Request $request)
+    public function index(Request $request)
     {
-        $grid = $usersGrid->create(['query' => User::query(), 'request' => $request]);
+        $grid = (new UsersGrid())->create(['query' => User::query(), 'request' => $request]);
 
         return view('welcome', ['grid' => $grid]);
     }
@@ -32,7 +32,7 @@ class UsersController extends Controller
     {
         $data = [
             'model' => class_basename(User::class),
-            'route' => route('users.create'),
+            'route' => route('users.store'),
             'action' => 'create',
             'dataVars' => [
                 'pjax-target' => '#' . $request->get('ref')
@@ -47,11 +47,21 @@ class UsersController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse|\Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|min:3|max:30',
+            'email' => 'required|email|unique'
+        ]);
+
+        $user = User::query()->create($request->all());
+
+        return new JsonResponse([
+            'success' => true,
+            'message' => 'User with id ' . $user->id . ' has been created.'
+        ]);
     }
 
     /**
@@ -96,21 +106,40 @@ class UsersController extends Controller
      *
      * @param  \Illuminate\Http\Request $request
      * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse|\Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|min:3|max:30',
+            'email' => 'required|email|unique:users,id,' . $id,
+        ]);
+
+        $status = User::query()->findOrFail($id)->update($request->all());
+
+        if ($status) {
+
+            return new JsonResponse([
+                'success' => true,
+                'message' => 'user with id ' . $id . ' has been updated.'
+            ]);
+        }
+        return new JsonResponse(['success' => false], 400);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse|\Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        $status = User::query()->findOrFail($id)->delete();
+
+        return new JsonResponse([
+            'success' => $status,
+            'message' => 'user with id ' . $id . ' has been updated.'
+        ]);
     }
 }

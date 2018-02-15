@@ -11,8 +11,8 @@
     </tr>
     </thead>
     <tbody>
-    @foreach($data as $item)
-        <tr>
+    <tr>
+        @foreach($data as $item)
             @foreach($rows as $row)
                 @if(is_callable($row->data))
                     @if($row->raw)
@@ -36,7 +36,7 @@
                     @endif
                 @endif
             @endforeach
-        </tr>
-    @endforeach
+        @endforeach
+    </tr>
     </tbody>
 </table>
