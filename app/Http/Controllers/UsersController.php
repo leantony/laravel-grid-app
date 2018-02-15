@@ -14,6 +14,7 @@ class UsersController extends Controller
      *
      * @param Request $request
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function index(Request $request)
     {
@@ -27,6 +28,7 @@ class UsersController extends Controller
      *
      * @param Request $request
      * @return \Illuminate\Http\Response
+     * @throws \Throwable
      */
     public function create(Request $request)
     {
@@ -52,8 +54,8 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|min:3|max:30',
-            'email' => 'required|email|unique'
+            'name' => 'required|min:3',
+            'email' => 'required|email|unique:users'
         ]);
 
         $user = User::query()->create($request->all());
@@ -70,6 +72,7 @@ class UsersController extends Controller
      * @param  int $id
      * @param Request $request
      * @return \Illuminate\Http\Response
+     * @throws \Throwable
      */
     public function show($id, Request $request)
     {
@@ -132,6 +135,7 @@ class UsersController extends Controller
      *
      * @param  int $id
      * @return JsonResponse|\Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy($id)
     {

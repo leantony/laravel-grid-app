@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c33c7dcb45628021cf0d058ffcf1aca1",
+    "content-hash": "b48deca5f9fe1285b3813659c1de6044",
     "packages": [
         {
             "name": "avengers/bootforms",
@@ -1098,16 +1098,16 @@
         },
         {
             "name": "leantony/laravel-grid",
-            "version": "1.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/leantony/laravel-grid.git",
-                "reference": "db7a7c63176d27fd914e75d31709d4e862ebb55a"
+                "reference": "96abaaec24273d6c751906aab2066ca5362d2347"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leantony/laravel-grid/zipball/db7a7c63176d27fd914e75d31709d4e862ebb55a",
-                "reference": "db7a7c63176d27fd914e75d31709d4e862ebb55a",
+                "url": "https://api.github.com/repos/leantony/laravel-grid/zipball/96abaaec24273d6c751906aab2066ca5362d2347",
+                "reference": "96abaaec24273d6c751906aab2066ca5362d2347",
                 "shasum": ""
             },
             "require": {
@@ -1165,7 +1165,7 @@
                 "leantony",
                 "pjax"
             ],
-            "time": "2018-02-15T12:05:20+00:00"
+            "time": "2018-02-15T19:19:10+00:00"
         },
         {
             "name": "maatwebsite/excel",
@@ -4733,16 +4733,16 @@
         },
         {
             "name": "symfony/thanks",
-            "version": "v1.0.5",
+            "version": "v1.0.68",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/thanks.git",
-                "reference": "c757ee0c9dcfcc0e9e30fbbbdcadeb9dcc9aaaf4"
+                "reference": "9474ce305253c2f0bc20322ff8e9973cf25c9a94"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/thanks/zipball/c757ee0c9dcfcc0e9e30fbbbdcadeb9dcc9aaaf4",
-                "reference": "c757ee0c9dcfcc0e9e30fbbbdcadeb9dcc9aaaf4",
+                "url": "https://api.github.com/repos/symfony/thanks/zipball/9474ce305253c2f0bc20322ff8e9973cf25c9a94",
+                "reference": "9474ce305253c2f0bc20322ff8e9973cf25c9a94",
                 "shasum": ""
             },
             "require": {
@@ -4772,7 +4772,7 @@
                 }
             ],
             "description": "Give thanks (in the form of a GitHub ⭐) to your fellow PHP package maintainers (not limited to Symfony components)!",
-            "time": "2018-01-26T10:44:34+00:00"
+            "time": "2018-02-02T13:47:40+00:00"
         },
         {
             "name": "theseer/tokenizer",
@@ -4867,7 +4867,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "leantony/laravel-grid": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
