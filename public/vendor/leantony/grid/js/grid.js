@@ -60,12 +60,12 @@ var leantony = leantony || {};
                         data: isForm ? obj.serialize() : null,
                         beforeSend: function () {
                             if (blockUi) {
-                                _grid.startBlockUI(waitingMsg || 'Please wait ...')
+                                leantony.utils.blockUI(waitingMsg || 'Please wait ...')
                             }
                         },
                         complete: function () {
                             if (blockUi) {
-                                _grid.stopBlockUI();
+                                leantony.utils.unBlockUI();
                             }
                         },
                         success: function (data) {
@@ -124,7 +124,7 @@ var leantony = leantony || {};
          * Linkable rows on tables
          */
         leantony.utils.tableLinks = function (options) {
-            if(!options) {
+            if (!options) {
                 console.warn('No options defined.');
                 return;
             }

@@ -143,7 +143,7 @@ class UsersController extends Controller
 
         return new JsonResponse([
             'success' => $status,
-            'message' => 'user with id ' . $id . ' has been updated.'
+            'message' => 'user with id ' . $id . ' has been deleted.'
         ]);
     }
 }

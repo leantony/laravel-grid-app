@@ -186,7 +186,7 @@
         </div>
     </div>
 </div>
-@push('scripts')
+@push('grid_js')
     <script>
         (function ($) {
             var grid = "{{ '#' . $grid->getId() }}";
@@ -199,10 +199,17 @@
                 searchForm: searchForm,
                 pjax: {
                     pjaxOptions: {},
-                    // what to do after a PJAX request
+                    // what to do after a PJAX request. Js plugins have to be re-intialized
                     afterPjax: function () {
                         // reload the container
                         $.pjax.reload({container: grid});
+                        // tooltip
+                        $('[data-toggle="tooltip"]').tooltip();
+                        // table links
+                        leantony.utils.tableLinks({element: '.linkable', navigationDelay: 100});
+                        // setup ajax listeners
+                        leantony.utils.executeAjaxRequest($('.data-remote'), 'click');
+                        leantony.utils.executeAjaxRequest($('form[data-remote]'), 'submit');
                     }
                 }
             });
