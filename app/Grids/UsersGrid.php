@@ -31,10 +31,10 @@ class UsersGrid extends Grid implements UsersGridInterface
     protected $linkableRows = false;
 
     /**
-    * Set the columns to be displayed. Check `docs/columns.md` for more information
+    * Set the columns to be displayed. Check `docs/customize_columns.md` for more information
     *
     * @return void
-    * @throws \Exception if an error occurs during parsing of row data
+    * @throws \Exception if an error occurs during parsing of the data
     */
     public function setColumns()
     {
@@ -54,7 +54,7 @@ class UsersGrid extends Grid implements UsersGridInterface
 		            "enabled" => true
 		        ],
 		        "filter" => [
-		            "enabled" => false,
+		            "enabled" => true,
 		            "operator" => "="
 		        ]
 		    ],
@@ -63,7 +63,7 @@ class UsersGrid extends Grid implements UsersGridInterface
 		            "enabled" => true
 		        ],
 		        "filter" => [
-		            "enabled" => false,
+		            "enabled" => true,
 		            "operator" => "="
 		        ]
 		    ],

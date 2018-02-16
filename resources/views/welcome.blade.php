@@ -40,7 +40,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js" integrity="sha256-TueWqYu0G+lYIimeIcMI8x1m14QH/DQVt4s9m/uuhPw=" crossorigin="anonymous"></script>
     <script src="{{ asset('vendor/leantony/grid/js/grid.js') }}"></script>
-    <script src="{{ asset('vendor/leantony/grid/js/modal.js') }}"></script>
     <script>
         // setup ajax
         $.ajaxSetup({
@@ -49,9 +48,12 @@
             }
         });
         // initialize modal js
-        _modal({});
-        _grid.executeAjaxRequest($('.data-remote'), 'click');
-        _grid.executeAjaxRequest($('form[data-remote]'), 'submit');
+        leantony.modal.init({});
+        // table links
+        leantony.utils.tableLinks({element: '.linkable', navigationDelay: 100});
+        // setup ajax listeners
+        leantony.utils.executeAjaxRequest($('.data-remote'), 'click');
+        leantony.utils.executeAjaxRequest($('form[data-remote]'), 'submit');
     </script>
     @stack('scripts')
     </body>
