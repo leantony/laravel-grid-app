@@ -1102,12 +1102,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/leantony/laravel-grid.git",
-                "reference": "96abaaec24273d6c751906aab2066ca5362d2347"
+                "reference": "6752323fc85506a9041e21968a88f02c85c23842"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leantony/laravel-grid/zipball/96abaaec24273d6c751906aab2066ca5362d2347",
-                "reference": "96abaaec24273d6c751906aab2066ca5362d2347",
+                "url": "https://api.github.com/repos/leantony/laravel-grid/zipball/6752323fc85506a9041e21968a88f02c85c23842",
+                "reference": "6752323fc85506a9041e21968a88f02c85c23842",
                 "shasum": ""
             },
             "require": {
@@ -1138,13 +1138,12 @@
             "autoload": {
                 "psr-4": {
                     "Leantony\\Grid\\": "src/",
-                    "Leantony\\Grid\\Providers\\": "src/providers",
-                    "Leantony\\Grid\\Commands\\": "src/commands",
                     "Leantony\\Grid\\Buttons\\": "src/buttons",
                     "Leantony\\Grid\\Columns\\": "src/columns",
+                    "Leantony\\Grid\\Commands\\": "src/commands",
                     "Leantony\\Grid\\Filters\\": "src/filters",
-                    "Leantony\\Grid\\Routing\\": "src/routing",
-                    "Leantony\\Grid\\Search\\": "src/search"
+                    "Leantony\\Grid\\Providers\\": "src/providers",
+                    "Leantony\\Grid\\Routing\\": "src/routing"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1165,7 +1164,7 @@
                 "leantony",
                 "pjax"
             ],
-            "time": "2018-02-15T19:19:10+00:00"
+            "time": "2018-02-16T11:10:07+00:00"
         },
         {
             "name": "maatwebsite/excel",
