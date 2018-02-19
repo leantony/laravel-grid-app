@@ -67,15 +67,6 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        // tooltip
-        $('[data-toggle="tooltip"]').tooltip();
-        // initialize modal js
-        leantony.modal.init({});
-        // table links
-        leantony.utils.tableLinks({element: '.linkable', navigationDelay: 100});
-        // setup ajax listeners
-        leantony.utils.executeAjaxRequest($('.data-remote'), 'click');
-        leantony.utils.executeAjaxRequest($('form[data-remote]'), 'submit');
     </script>
     @stack('grid_js')
     </body>
