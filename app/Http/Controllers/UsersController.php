@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Grids\UsersGrid;
+use App\Grids\UsersGridInterface;
 use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -12,15 +13,14 @@ class UsersController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param UsersGridInterface $usersGrid
      * @param Request $request
      * @return \Illuminate\Http\Response
-     * @throws \Exception
      */
-    public function index(Request $request)
+    public function index(UsersGridInterface $usersGrid, Request $request)
     {
-        $grid = (new UsersGrid())->create(['query' => User::query(), 'request' => $request]);
-
-        return view('welcome', ['grid' => $grid]);
+        return $usersGrid->create(['query' => User::query(), 'request' => $request])
+            ->renderOn('welcome');
     }
 
     /**
