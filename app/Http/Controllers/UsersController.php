@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Grids\UsersGrid;
 use App\Grids\UsersGridInterface;
 use App\User;
 use Illuminate\Http\JsonResponse;
@@ -58,18 +57,13 @@ class UsersController extends Controller
             'email' => 'required|email|unique:users'
         ]);
 
-        if (env('APP_DEBUG')) {
-            $user = User::query()->create($request->all());
+        $user = User::query()->create($request->all());
 
-            return new JsonResponse([
-                'success' => true,
-                'message' => 'User with id ' . $user->id . ' has been created.'
-            ]);
-        }
         return new JsonResponse([
             'success' => true,
-            'message' => 'Yes, but the db was not touched for obvious reasons'
+            'message' => 'User with id ' . $user->id . ' has been created.'
         ]);
+
     }
 
     /**

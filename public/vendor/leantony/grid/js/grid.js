@@ -130,8 +130,10 @@ var _grids = _grids || {};
             }
             var elements = $(options.element);
             elements.each(function (i, obj) {
-                var link = $(obj).data('url');
-                $(obj).click(function (e) {
+                var el = $(obj);
+                var link = el.data('url');
+                el.css({ 'cursor': "pointer" });
+                el.click(function (e) {
                     setTimeout(function () {
                         window.location = link;
                     }, options.navigationDelay || 100);
@@ -350,7 +352,7 @@ var _grids = _grids || {};
                     });
             };
 
-            $(document.body).off('click._grids.modal').on('click._grids.modal', $this.options.modalTriggerSelector, function (e) {
+            $(document.body).off('click.bs.modal').on('click.bs.modal', $this.options.modalTriggerSelector, function (e) {
                 e.preventDefault();
                 clickHandler(this);
             });
@@ -477,7 +479,7 @@ var _grids = _grids || {};
                 });
             };
 
-            $('#' + $this.options.modal_id).off("click._grids.modal").on("click._grids.modal", '#' + $this.options.form_id + ' button[type="submit"]', function (e) {
+            $('#' + $this.options.modal_id).off("click.bs.modal").on("click.bs.modal", '#' + $this.options.form_id + ' button[type="submit"]', function (e) {
                 e.preventDefault();
                 submit_form(this);
             });
