@@ -2,18 +2,17 @@
 
 namespace App\Grids;
 
-use App\Role;
 use Closure;
 use Leantony\Grid\Grid;
 
-class UsersGrid extends Grid implements UsersGridInterface
+class RolesGrid extends Grid implements RolesGridInterface
 {
     /**
      * The name of the grid
      *
      * @var string
      */
-    protected $name = 'Users';
+    protected $name = 'Roles';
 
     /**
      * List of buttons to be generated on the grid
@@ -21,7 +20,7 @@ class UsersGrid extends Grid implements UsersGridInterface
      * @var array
      */
     protected $buttonsToGenerate = [
-        'create', 'view', 'delete', 'refresh', 'export'
+        'create', 'view', 'refresh', 'export'
     ];
 
     /**
@@ -41,29 +40,30 @@ class UsersGrid extends Grid implements UsersGridInterface
     {
         $this->columns = [
             "id" => [
-                "label" => "ID",
-                "filter" => ["enabled" => true, "operator" => "="],
+                "label" => "ID", "filter" => ["enabled" => true, "operator" => "="],
                 "styles" => ["column" => "col-md-2"]
             ],
             "name" => [
                 "search" => ["enabled" => true],
                 "filter" => ["enabled" => true, "operator" => "="]
             ],
-            "role_id" => [
-                'label' => 'Role',
-                'search' => ['enabled' => false],
-                'presenter' => function ($columnData, $columnName) {
-                    return $columnData->role->name;
-                },
-                'filter' => [
-                    'enabled' => true,
-                    'type' => 'select',
-                    'data' => Role::query()->pluck('name', 'id')
-                ]
+            "users_count" => [
+                'label' => 'Users assigned',
+                'sort' => false,
+                'filter' => ['enabled' => false],
+                'presenter' => function($columnData, $columnName) {
+                    return $columnData->users->count();
+                }
             ],
-            "email" => [
+            "description" => [
                 "search" => ["enabled" => true],
-                "filter" => ["enabled" => true, "operator" => "="]
+                "data" => function ($gridItem, $columnName) {
+                    // $gridItem - column object
+                    // $columnName - the name of this column (ie, name)
+                    return str_limit($gridItem->{$columnName}, 30);
+                },
+                "filter" => ["enabled" => true, "operator" => "like"],
+                "styles" => ["column" => "col-md-4"]
             ],
             "created_at" => [
                 "sort" => false, "date" => true,
@@ -80,14 +80,14 @@ class UsersGrid extends Grid implements UsersGridInterface
     public function setRoutes()
     {
         // searching, sorting and filtering
-        $this->sortRouteName = 'users.index';
-        $this->searchRoute = 'users.index';
+        $this->sortRouteName = 'roles.index';
+        $this->searchRoute = 'roles.index';
 
         // crud support
-        $this->indexRouteName = 'users.index';
-        $this->createRouteName = 'users.create';
-        $this->viewRouteName = 'users.show';
-        $this->deleteRouteName = 'users.destroy';
+        $this->indexRouteName = 'roles.index';
+        $this->createRouteName = 'roles.create';
+        $this->viewRouteName = 'roles.show';
+        $this->deleteRouteName = 'roles.destroy';
     }
 
     /**
