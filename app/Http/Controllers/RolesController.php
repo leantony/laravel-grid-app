@@ -24,7 +24,6 @@ class RolesController extends Controller
             ->renderOn('render_grid', [
                 'generation_command' => 'php artisan make:grid --model="App\Role"',
                 'grid_code' => file_get_contents(app_path('Grids/RolesGrid.php')),
-                'controller_code' => file_get_contents(app_path('Http/Controllers/RolesController.php'))
             ]);
     }
 
