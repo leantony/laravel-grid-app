@@ -898,12 +898,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/leantony/laravel-grid.git",
-                "reference": "3b75183299cf76512fdb2c12d34e299942d2cfc4"
+                "reference": "d67b005bba7f3c604b6df3df02b1be4871faa262"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leantony/laravel-grid/zipball/3b75183299cf76512fdb2c12d34e299942d2cfc4",
-                "reference": "3b75183299cf76512fdb2c12d34e299942d2cfc4",
+                "url": "https://api.github.com/repos/leantony/laravel-grid/zipball/d67b005bba7f3c604b6df3df02b1be4871faa262",
+                "reference": "d67b005bba7f3c604b6df3df02b1be4871faa262",
                 "shasum": ""
             },
             "require": {
@@ -966,20 +966,20 @@
                 "leantony",
                 "pjax"
             ],
-            "time": "2018-04-03T20:41:37+00:00"
+            "time": "2018-04-05T08:55:49+00:00"
         },
         {
             "name": "maatwebsite/excel",
-            "version": "3.0.2",
+            "version": "3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Maatwebsite/Laravel-Excel.git",
-                "reference": "e24f46b027c256183cc592833aad22a70f210ebd"
+                "reference": "4784f6551e62d9ebefcce6aae51f6ad854826d2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/e24f46b027c256183cc592833aad22a70f210ebd",
-                "reference": "e24f46b027c256183cc592833aad22a70f210ebd",
+                "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/4784f6551e62d9ebefcce6aae51f6ad854826d2e",
+                "reference": "4784f6551e62d9ebefcce6aae51f6ad854826d2e",
                 "shasum": ""
             },
             "require": {
@@ -1029,7 +1029,7 @@
                 "php",
                 "phpspreadsheet"
             ],
-            "time": "2018-04-03T06:19:49+00:00"
+            "time": "2018-04-05T06:21:50+00:00"
         },
         {
             "name": "monolog/monolog",
