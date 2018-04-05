@@ -23,7 +23,7 @@ class RolesController extends Controller
         return $rolesGrid->create(['request' => $request, 'query' => $query])
             ->renderOn('render_grid', [
                 'generation_command' => 'php artisan make:grid --model="App\Role"',
-                'grid_code' => file_get_contents(app_path('Grids/RolesGrid.php')),
+                'grid_code' => "https://gist.github.com/leantony/6554b94c9d85f619b276e6d465cf0117.js",
             ]);
     }
 

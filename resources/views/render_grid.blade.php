@@ -15,11 +15,7 @@
             </div>
             <div class="tab-pane fade" id="gridCode">
                 <h2>Grid code</h2>
-                <pre class="prettyprint">
-                        <code>
-                            {{ $grid_code }}
-                        </code>
-                    </pre>
+                <script src="{{ asset($grid_code) }}"></script>
             </div>
         </div>
     </div>
