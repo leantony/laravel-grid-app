@@ -28,7 +28,7 @@ class RolesGrid extends Grid implements RolesGridInterface
      *
      * @var bool
      */
-    protected $linkableRows = false;
+    protected $linkableRows = true;
 
     /**
      * Set the columns to be displayed. Check `docs/customize_columns.md` for more information
@@ -58,11 +58,12 @@ class RolesGrid extends Grid implements RolesGridInterface
             "description" => [
                 "search" => ["enabled" => true],
                 "data" => function ($gridItem, $columnName) {
+                    // 'presenter' and 'data' do arguably the same tasks. Actually, presenter creates a 'data' variable with the callback specified
                     // $gridItem - column object
                     // $columnName - the name of this column (ie, name)
-                    return str_limit($gridItem->{$columnName}, 30);
+                    return str_limit($gridItem->{$columnName}, 40);
                 },
-                "filter" => ["enabled" => true, "operator" => "like"],
+                "filter" => ["enabled" => false, "operator" => "like"],
                 "styles" => ["column" => "col-md-4"]
             ],
             "created_at" => [
@@ -100,7 +101,7 @@ class RolesGrid extends Grid implements RolesGridInterface
         $view = $this->viewRouteName;
 
         return function ($gridName, $item) use ($view) {
-            return route($view, [$gridName => $item->id]);
+            return route('dummy.show', ['id' => $item->id]);
         };
     }
 
@@ -111,7 +112,10 @@ class RolesGrid extends Grid implements RolesGridInterface
      */
     public function configureButtons()
     {
-        //
+        $this->editRowButton('view', [
+            'class' => 'btn btn-xs btn-primary',
+            'pjaxEnabled' => false,
+        ]);
     }
 
     /**
@@ -123,7 +127,8 @@ class RolesGrid extends Grid implements RolesGridInterface
     public function getRowCssStyle(): Closure
     {
         return function ($gridName, $item) {
-            return "";
+            // in this case, we check if the id is an even number and apply a class dynamically.
+            return $item->id % 2 === 0 ? 'success' : '';
         };
     }
 }

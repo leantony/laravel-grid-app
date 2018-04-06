@@ -14,3 +14,4 @@
 Route::get('/', ['uses' => 'UsersController@index']);
 Route::resource('users', 'UsersController');
 Route::resource('roles', 'RolesController');
+Route::resource('dummy', 'DummyController');
