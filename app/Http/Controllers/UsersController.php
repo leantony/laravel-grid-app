@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Grids\UsersGridInterface;
+use App\Role;
 use App\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -60,7 +61,12 @@ class UsersController extends Controller
             'email' => 'required|email|unique:users'
         ]);
 
-        $user = User::query()->create(array_merge($request->all(), ['password' => bcrypt(str_random())]));
+        User::creating(function ($user) {
+            $user->role_id = Role::query()->select('id')->get()->random()->id;
+            $user->password = bcrypt(str_random());
+        });
+
+        $user = User::query()->create($request->all());
 
         return new JsonResponse([
             'success' => true,
