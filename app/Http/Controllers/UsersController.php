@@ -60,7 +60,7 @@ class UsersController extends Controller
             'email' => 'required|email|unique:users'
         ]);
 
-        $user = User::query()->create($request->all());
+        $user = User::query()->create(array_merge($request->all(), ['password' => bcrypt(str_random())]));
 
         return new JsonResponse([
             'success' => true,
