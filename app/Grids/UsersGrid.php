@@ -51,7 +51,7 @@ class UsersGrid extends Grid implements UsersGridInterface
             ],
             "role_id" => [
                 'label' => 'Role',
-                'export' => true,
+                'export' => false,
                 'search' => ['enabled' => false],
                 'presenter' => function ($columnData, $columnName) {
                     return $columnData->role->name;
