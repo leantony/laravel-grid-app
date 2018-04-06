@@ -9,7 +9,10 @@
         <div class="tab-content">
             <div class="tab-pane fade in active" id="grid">
                 <h2>Grid generated</h2>
-                <p><p>The grid below was generated using the command <code>{{ $generation_command }}</code>.</p>
+                <p>The grid below was generated using the command <code>{{ $generation_command }}</code>.</p>
+                <p>
+                    How to use & generate this grid can be found <a href="{{ url('https://github.com/leantony/laravel-grid/blob/master/README.MD') }}">here</a>.
+                </p>
                 <hr>
                 {!! $grid !!}
             </div>
