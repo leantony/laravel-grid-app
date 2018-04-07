@@ -23,7 +23,7 @@
             <a href="{{ url('https://packagist.org/packages/leantony/laravel-grid') }}">Packagist</a>
         </li>
         <li>
-            <a href="{{ url('https://github.com/leantony/laravel-grid/blob/master/README.MD') }}">Docs</a>
+            <a href="{{ url('https://github.com/leantony/laravel-grid/wiki') }}">Docs</a>
         </li>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples <b class="caret"></b></a>
