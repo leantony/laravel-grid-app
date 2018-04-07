@@ -11,7 +11,7 @@
                 <h2>Grid generated</h2>
                 <p>The grid below was generated using the command <code>{{ $generation_command }}</code>.</p>
                 <p>
-                    How to use & generate this grid can be found <a href="{{ url('https://github.com/leantony/laravel-grid/blob/master/README.MD') }}">here</a>.
+                    How to use & generate this grid can be found <a href="{{ url('https://github.com/leantony/laravel-grid/wiki/Usage') }}">here</a>.
                 </p>
                 <hr>
                 {!! $grid !!}
