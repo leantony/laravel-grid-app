@@ -49,6 +49,10 @@ class UsersGrid extends Grid implements UsersGridInterface
                 "search" => ["enabled" => true],
                 "filter" => ["enabled" => true, "operator" => "="]
             ],
+            "created_at" => [
+                "sort" => false, "date" => true,
+                "filter" => ["enabled" => true, "type" => "daterange"]
+            ],
             "role_id" => [
                 'label' => 'Role',
                 'export' => false,
@@ -65,10 +69,6 @@ class UsersGrid extends Grid implements UsersGridInterface
             "email" => [
                 "search" => ["enabled" => true],
                 "filter" => ["enabled" => true, "operator" => "="]
-            ],
-            "created_at" => [
-                "sort" => false, "date" => true,
-                "filter" => ["enabled" => true, "type" => "date", "operator" => "<="]
             ]
         ];
     }
