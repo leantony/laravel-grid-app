@@ -52,6 +52,7 @@ class RolesGrid extends Grid implements RolesGridInterface
                 'sort' => false,
                 'filter' => ['enabled' => false],
                 'presenter' => function($columnData, $columnName) {
+                    // $columnData is an instance of $role
                     return $columnData->users->count();
                 }
             ],
@@ -113,8 +114,8 @@ class RolesGrid extends Grid implements RolesGridInterface
     public function configureButtons()
     {
         $this->editRowButton('view', [
-            'class' => 'btn btn-xs btn-primary',
             'pjaxEnabled' => false,
+            'showModal' => false
         ]);
     }
 
