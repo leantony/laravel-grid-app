@@ -41,7 +41,6 @@ class RolesGrid extends Grid implements RolesGridInterface
         $this->columns = [
             "id" => [
                 "label" => "ID", "filter" => ["enabled" => true, "operator" => "="],
-                "styles" => ["column" => "col-md-2"]
             ],
             "name" => [
                 "search" => ["enabled" => true],
@@ -129,7 +128,7 @@ class RolesGrid extends Grid implements RolesGridInterface
     {
         return function ($gridName, $item) {
             // in this case, we check if the id is an even number and apply a class dynamically.
-            return $item->id % 2 === 0 ? 'success' : '';
+            return $item->id % 2 === 0 ? 'table-success' : '';
         };
     }
 }

@@ -43,7 +43,6 @@ class UsersGrid extends Grid implements UsersGridInterface
             "id" => [
                 "label" => "ID",
                 "filter" => ["enabled" => true, "operator" => "="],
-                "styles" => ["column" => "col-md-2"]
             ],
             "name" => [
                 "search" => ["enabled" => true],
