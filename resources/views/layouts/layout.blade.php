@@ -38,7 +38,7 @@
     <div class="jumbotron">
         <div class="container" style="margin-top: 50px;">
             <h1>Laravel Grid View</h1>
-            <p>Simple, customizable, pjax ready bootstrap styled grid view for the laravel framework, inspired by the yii2 gridview widget. For laravel 5.6 and above.
+            <p>Simple, customizable, pjax ready bootstrap styled grid view for the laravel framework, inspired by the yii2 gridview widget. For laravel 5.5 and above.
             <p>
                 <a class="btn btn-primary btn-lg" href="{{ url('https://github.com/leantony/laravel-grid') }}">View on Github
                     <i class="fa fa-github"></i></a>
