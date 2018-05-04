@@ -1,23 +1,33 @@
-@if(isset($method))
-    {!! BootForm::openHorizontal(['sm' => [4, 8], 'lg' => [2, 10]])->action($route)->class('form-horizontal')->id('modal_form')->data($dataVars ?? [])->$method() !!}
-@else
-    {!! BootForm::openHorizontal(['sm' => [4, 8], 'lg' => [2, 10]])->action($route)->class('form-horizontal')->id('modal_form')->data($dataVars ?? [])->post() !!}
-@endif
+<!-- Modal Header -->
 <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     <h4 class="modal-title">{{ ucwords($action . ' '. class_basename($model)) }}</h4>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
 </div>
-<div class="modal-body">
-    <div id="modal-notification"></div>
-    @if(isset($data))
-        {!! BootForm::bind($data) !!}
-    @endif
-    {!! BootForm::text('Name', 'name') !!}
-    {!! BootForm::textArea('Description', 'description') !!}
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;{{ 'Close' }}
-    </button>
-    <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i>&nbsp;{{ 'Save' }}</button>
-</div>
-{!! BootForm::close() !!}
+<!-- Modal body -->
+<form accept-charset="UTF-8" action="{{ $route }}" id="modal_form"
+      data-pjax-target="#{{ $pjaxContainer ?? 'add-a-pjax-container-here' }}" method="{{ $method ?? 'POST' }}">
+    <div class="modal-body">
+        <div id="modal-notification"></div>
+        {!! csrf_field() !!}
+        <div class="form-group row">
+            <label for="input_name" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="input_name" name="name"
+                       placeholder="Enter name" required value="{{ isset($role) ? $role->name : old('name')}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="input_desc" class="col-sm-2 col-form-label">Description</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" id="input_desc"
+                          name="email" placeholder="Enter description" required value="{{ isset($role) ? $role->description : old('description')}}"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal footer -->
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;{{ 'Close' }}</button>
+        <button type="submit" class="btn btn-success"><i class="fa fa-floppy-o"></i>&nbsp;{{ 'Save' }}</button>
+    </div>
+</form>

@@ -78,15 +78,13 @@ class RolesController extends Controller
      */
     public function show($id, Request $request)
     {
-        $user = Role::with('users')->findOrFail($id);
+        $role = Role::with('users')->findOrFail($id);
 
         $data = [
             'model' => class_basename(Role::class),
-            'route' => route('roles.update', ['user' => $user->id]),
-            'data' => $user,
-            'dataVars' => [
-                'pjax-target' => '#' . $request->get('ref')
-            ],
+            'route' => route('roles.update', ['user' => $role->id]),
+            'role' => $role,
+            'pjaxContainer' => $request->get('ref'),
             'method' => 'patch',
             'action' => 'update'
         ];

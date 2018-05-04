@@ -28,24 +28,36 @@ class RolesGrid extends Grid implements RolesGridInterface
      *
      * @var bool
      */
-    protected $linkableRows = true;
+    protected $linkableRows = false;
 
     /**
-     * Set the columns to be displayed. Check `docs/customize_columns.md` for more information
-     *
-     * @return void
-     * @throws \Exception if an error occurs during parsing of the data
-     */
+    * Set the columns to be displayed.
+    *
+    * @return void
+    * @throws \Exception if an error occurs during parsing of the data
+    */
     public function setColumns()
     {
         $this->columns = [
-            "id" => [
-                "label" => "ID", "filter" => ["enabled" => true, "operator" => "="],
-            ],
-            "name" => [
-                "search" => ["enabled" => true],
-                "filter" => ["enabled" => true, "operator" => "="]
-            ],
+		    "id" => [
+		        "label" => "ID",
+		        "filter" => [
+		            "enabled" => true,
+		            "operator" => "="
+		        ],
+		        "styles" => [
+		            "column" => "grid-w-10"
+		        ]
+		    ],
+		    "name" => [
+		        "search" => [
+		            "enabled" => true
+		        ],
+		        "filter" => [
+		            "enabled" => true,
+		            "operator" => "="
+		        ]
+		    ],
             "users_count" => [
                 'label' => 'Users assigned',
                 'sort' => false,
@@ -64,13 +76,18 @@ class RolesGrid extends Grid implements RolesGridInterface
                     return str_limit($gridItem->{$columnName}, 40);
                 },
                 "filter" => ["enabled" => false, "operator" => "like"],
-                "styles" => ["column" => "col-md-4"]
+                "styles" => ["column" => "w-30"]
             ],
-            "created_at" => [
-                "sort" => false, "date" => true,
-                "filter" => ["enabled" => true, "type" => "date", "operator" => "<="]
-            ]
-        ];
+		    "created_at" => [
+		        "sort" => false,
+		        "date" => "true",
+		        "filter" => [
+		            "enabled" => true,
+		            "type" => "date",
+		            "operator" => "<="
+		        ]
+		    ]
+		];
     }
 
     /**
@@ -92,10 +109,10 @@ class RolesGrid extends Grid implements RolesGridInterface
     }
 
     /**
-     * Return a closure that is executed per row, to render a link that will be clicked on to execute an action
-     *
-     * @return Closure
-     */
+    * Return a closure that is executed per row, to render a link that will be clicked on to execute an action
+    *
+    * @return Closure
+    */
     public function getLinkableCallback(): Closure
     {
         $view = $this->viewRouteName;
@@ -106,10 +123,10 @@ class RolesGrid extends Grid implements RolesGridInterface
     }
 
     /**
-     * Configure rendered buttons, or add your own
-     *
-     * @return void
-     */
+    * Configure rendered buttons, or add your own
+    *
+    * @return void
+    */
     public function configureButtons()
     {
         $this->editRowButton('view', [
@@ -119,11 +136,11 @@ class RolesGrid extends Grid implements RolesGridInterface
     }
 
     /**
-     * Returns a closure that will be executed to apply a class for each row on the grid
-     * The closure takes two arguments - `name` of grid, and `item` being iterated upon
-     *
-     * @return Closure
-     */
+    * Returns a closure that will be executed to apply a class for each row on the grid
+    * The closure takes two arguments - `name` of grid, and `item` being iterated upon
+    *
+    * @return Closure
+    */
     public function getRowCssStyle(): Closure
     {
         return function ($gridName, $item) {

@@ -39,9 +39,7 @@ class UsersController extends Controller
             'model' => class_basename(User::class),
             'route' => route('users.store'),
             'action' => 'create',
-            'dataVars' => [
-                'pjax-target' => '#' . $request->get('ref')
-            ]
+            'pjaxContainer' => $request->get('ref'),
         ];
 
         // modal
@@ -90,10 +88,8 @@ class UsersController extends Controller
         $data = [
             'model' => class_basename(User::class),
             'route' => route('users.update', ['user' => $user->id]),
-            'data' => $user,
-            'dataVars' => [
-                'pjax-target' => '#' . $request->get('ref')
-            ],
+            'user' => $user,
+            'pjaxContainer' => $request->get('ref'),
             'method' => 'patch',
             'action' => 'update'
         ];
