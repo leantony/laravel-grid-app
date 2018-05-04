@@ -22,7 +22,7 @@ class UsersController extends Controller
         return $usersGrid->create(['query' => User::with('role'), 'request' => $request])
             ->renderOn('render_grid', [
                 'generation_command' => 'php artisan make:grid --model="App\User"',
-                'grid_code' => "https://gist.github.com/leantony/52793560fe98cab2440b829c3b3f8d9f.js",
+                'grid_code' => "https://gist.github.com/leantony/245d13514c962b92a60d057218e1cce1.js",
             ]);
     }
 

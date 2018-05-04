@@ -32,27 +32,31 @@ class UsersGrid extends Grid implements UsersGridInterface
     protected $linkableRows = false;
 
     /**
-    * Set the columns to be displayed.
-    *
-    * @return void
-    * @throws \Exception if an error occurs during parsing of the data
-    */
+     * Set the columns to be displayed.
+     *
+     * @return void
+     * @throws \Exception if an error occurs during parsing of the data
+     */
     public function setColumns()
     {
         $this->columns = [
-		    "id" => [
-		        "label" => "ID",
-		        "filter" => ["enabled" => true, "operator" => "="],
-		        "styles" => ["column" => "grid-w-10"]
-		    ],
-		    "name" => [
-		        "search" => ["enabled" => true],
-		        "filter" => ["enabled" => true, "operator" => "="]
-		    ],
-		    "email" => [
-		        "search" => ["enabled" => true],
-		        "filter" => ["enabled" => true, "operator" => "="]
-		    ],
+            "id" => [
+                "label" => "ID",
+                "filter" => ["enabled" => true, "operator" => "="],
+                "styles" => ["column" => "grid-w-10"]
+            ],
+            "name" => [
+                "search" => ["enabled" => true],
+                "filter" => ["enabled" => true, "operator" => "="]
+            ],
+            "email" => [
+                "search" => ["enabled" => true],
+                "filter" => ["enabled" => true, "operator" => "="]
+            ],
+            "created_at" => [
+                "sort" => false, "date" => true,
+                "filter" => ["enabled" => true, "type" => "daterange"]
+            ],
             "role_id" => [
                 'label' => 'Role',
                 'export' => false,
@@ -66,11 +70,7 @@ class UsersGrid extends Grid implements UsersGridInterface
                     'data' => Role::query()->pluck('name', 'id')
                 ]
             ],
-            "created_at" => [
-                "sort" => false, "date" => true,
-                "filter" => ["enabled" => true, "type" => "daterange"]
-            ]
-		];
+        ];
     }
 
     /**
@@ -92,10 +92,10 @@ class UsersGrid extends Grid implements UsersGridInterface
     }
 
     /**
-    * Return a closure that is executed per row, to render a link that will be clicked on to execute an action
-    *
-    * @return Closure
-    */
+     * Return a closure that is executed per row, to render a link that will be clicked on to execute an action
+     *
+     * @return Closure
+     */
     public function getLinkableCallback(): Closure
     {
         $view = $this->viewRouteName;
@@ -106,21 +106,21 @@ class UsersGrid extends Grid implements UsersGridInterface
     }
 
     /**
-    * Configure rendered buttons, or add your own
-    *
-    * @return void
-    */
+     * Configure rendered buttons, or add your own
+     *
+     * @return void
+     */
     public function configureButtons()
     {
         //
     }
 
     /**
-    * Returns a closure that will be executed to apply a class for each row on the grid
-    * The closure takes two arguments - `name` of grid, and `item` being iterated upon
-    *
-    * @return Closure
-    */
+     * Returns a closure that will be executed to apply a class for each row on the grid
+     * The closure takes two arguments - `name` of grid, and `item` being iterated upon
+     *
+     * @return Closure
+     */
     public function getRowCssStyle(): Closure
     {
         return function ($gridName, $item) {

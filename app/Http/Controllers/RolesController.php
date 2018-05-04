@@ -23,7 +23,7 @@ class RolesController extends Controller
         return $rolesGrid->create(['request' => $request, 'query' => $query])
             ->renderOn('render_grid', [
                 'generation_command' => 'php artisan make:grid --model="App\Role"',
-                'grid_code' => "https://gist.github.com/leantony/6554b94c9d85f619b276e6d465cf0117.js",
+                'grid_code' => "https://gist.github.com/leantony/4f51754a87f0e0ff548864dc9fadcb3b.js",
             ]);
     }
 
@@ -32,6 +32,7 @@ class RolesController extends Controller
      *
      * @param Request $request
      * @return \Illuminate\Http\Response
+     * @throws \Throwable
      */
     public function create(Request $request)
     {
@@ -39,9 +40,7 @@ class RolesController extends Controller
             'model' => class_basename(Role::class),
             'route' => route('roles.store'),
             'action' => 'create',
-            'dataVars' => [
-                'pjax-target' => '#' . $request->get('ref')
-            ]
+            'pjaxContainer' => $request->get('ref'),
         ];
 
         // modal
@@ -75,6 +74,7 @@ class RolesController extends Controller
      * @param  int $id
      * @param Request $request
      * @return \Illuminate\Http\Response
+     * @throws \Throwable
      */
     public function show($id, Request $request)
     {

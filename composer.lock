@@ -899,12 +899,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/leantony/laravel-grid.git",
-                "reference": "d9af5da0eab072f3f53b252c35f384a0030ebfa2"
+                "reference": "6b97d6e1f97fd0c139b74f3089baa3517c5d9556"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leantony/laravel-grid/zipball/d9af5da0eab072f3f53b252c35f384a0030ebfa2",
-                "reference": "d9af5da0eab072f3f53b252c35f384a0030ebfa2",
+                "url": "https://api.github.com/repos/leantony/laravel-grid/zipball/6b97d6e1f97fd0c139b74f3089baa3517c5d9556",
+                "reference": "6b97d6e1f97fd0c139b74f3089baa3517c5d9556",
                 "shasum": ""
             },
             "require": {
@@ -960,7 +960,7 @@
                 "leantony",
                 "pjax"
             ],
-            "time": "2018-05-04T11:17:21+00:00"
+            "time": "2018-05-04T22:59:50+00:00"
         },
         {
             "name": "maatwebsite/excel",
@@ -4554,16 +4554,16 @@
         },
         {
             "name": "symfony/thanks",
-            "version": "v1.0.68",
+            "version": "v1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/thanks.git",
-                "reference": "9474ce305253c2f0bc20322ff8e9973cf25c9a94"
+                "reference": "bade4992c46ed722162694b4af8d72f84402819a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/thanks/zipball/9474ce305253c2f0bc20322ff8e9973cf25c9a94",
-                "reference": "9474ce305253c2f0bc20322ff8e9973cf25c9a94",
+                "url": "https://api.github.com/repos/symfony/thanks/zipball/bade4992c46ed722162694b4af8d72f84402819a",
+                "reference": "bade4992c46ed722162694b4af8d72f84402819a",
                 "shasum": ""
             },
             "require": {
@@ -4593,7 +4593,7 @@
                 }
             ],
             "description": "Give thanks (in the form of a GitHub ⭐) to your fellow PHP package maintainers (not limited to Symfony components)!",
-            "time": "2018-02-02T13:47:40+00:00"
+            "time": "2018-03-14T21:51:39+00:00"
         },
         {
             "name": "theseer/tokenizer",

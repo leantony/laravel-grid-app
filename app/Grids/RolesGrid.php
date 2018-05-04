@@ -28,7 +28,7 @@ class RolesGrid extends Grid implements RolesGridInterface
      *
      * @var bool
      */
-    protected $linkableRows = false;
+    protected $linkableRows = true;
 
     /**
     * Set the columns to be displayed.
