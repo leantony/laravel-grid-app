@@ -21,7 +21,11 @@ class UsersGrid extends Grid implements UsersGridInterface
      * @var array
      */
     protected $buttonsToGenerate = [
-        'create', 'view', 'delete', 'refresh', 'export'
+        'create',
+        'view',
+        'delete',
+        'refresh',
+        'export'
     ];
 
     /**
@@ -32,11 +36,11 @@ class UsersGrid extends Grid implements UsersGridInterface
     protected $linkableRows = false;
 
     /**
-     * Set the columns to be displayed.
-     *
-     * @return void
-     * @throws \Exception if an error occurs during parsing of the data
-     */
+    * Set the columns to be displayed.
+    *
+    * @return void
+    * @throws \Exception if an error occurs during parsing of the data
+    */
     public function setColumns()
     {
         $this->columns = [
@@ -81,46 +85,42 @@ class UsersGrid extends Grid implements UsersGridInterface
     public function setRoutes()
     {
         // searching, sorting and filtering
-        $this->sortRouteName = 'users.index';
-        $this->searchRoute = 'users.index';
+        $this->setIndexRouteName('users.index');
 
         // crud support
-        $this->indexRouteName = 'users.index';
-        $this->createRouteName = 'users.create';
-        $this->viewRouteName = 'users.show';
-        $this->deleteRouteName = 'users.destroy';
+        $this->setCreateRouteName('users.create');
+        $this->setViewRouteName('users.show');
+        $this->setDeleteRouteName('users.destroy');
     }
 
     /**
-     * Return a closure that is executed per row, to render a link that will be clicked on to execute an action
-     *
-     * @return Closure
-     */
+    * Return a closure that is executed per row, to render a link that will be clicked on to execute an action
+    *
+    * @return Closure
+    */
     public function getLinkableCallback(): Closure
     {
-        $view = $this->viewRouteName;
-
-        return function ($gridName, $item) use ($view) {
-            return route($view, [$gridName => $item->id]);
+        return function ($gridName, $item) {
+            return route($this->getViewRouteName(), [$gridName => $item->id]);
         };
     }
 
     /**
-     * Configure rendered buttons, or add your own
-     *
-     * @return void
-     */
+    * Configure rendered buttons, or add your own
+    *
+    * @return void
+    */
     public function configureButtons()
     {
         //
     }
 
     /**
-     * Returns a closure that will be executed to apply a class for each row on the grid
-     * The closure takes two arguments - `name` of grid, and `item` being iterated upon
-     *
-     * @return Closure
-     */
+    * Returns a closure that will be executed to apply a class for each row on the grid
+    * The closure takes two arguments - `name` of grid, and `item` being iterated upon
+    *
+    * @return Closure
+    */
     public function getRowCssStyle(): Closure
     {
         return function ($gridName, $item) {

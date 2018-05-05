@@ -20,7 +20,10 @@ class RolesGrid extends Grid implements RolesGridInterface
      * @var array
      */
     protected $buttonsToGenerate = [
-        'create', 'view', 'refresh', 'export'
+        'create',
+        'view',
+        'refresh',
+        'export'
     ];
 
     /**
@@ -41,31 +44,23 @@ class RolesGrid extends Grid implements RolesGridInterface
         $this->columns = [
 		    "id" => [
 		        "label" => "ID",
-		        "filter" => [
-		            "enabled" => true,
-		            "operator" => "="
-		        ],
-		        "styles" => [
-		            "column" => "grid-w-10"
-		        ]
+		        "filter" => ["enabled" => true, "operator" => "="],
+		        "styles" => ["column" => "grid-w-10"]
 		    ],
 		    "name" => [
-		        "search" => [
-		            "enabled" => true
-		        ],
-		        "filter" => [
-		            "enabled" => true,
-		            "operator" => "="
-		        ]
+		        "search" => ["enabled" => true],
+		        "filter" => ["enabled" => true, "operator" => "="]
 		    ],
             "users_count" => [
                 'label' => 'Users assigned',
                 'sort' => false,
+                'export' => false,
                 'filter' => ['enabled' => false],
                 'presenter' => function($columnData, $columnName) {
                     // $columnData is an instance of $role
                     return $columnData->users->count();
-                }
+                },
+                "styles" => ["column" => "grid-w-15"]
             ],
             "description" => [
                 "search" => ["enabled" => true],
@@ -73,10 +68,10 @@ class RolesGrid extends Grid implements RolesGridInterface
                     // 'presenter' and 'data' do arguably the same tasks. Actually, presenter creates a 'data' variable with the callback specified
                     // $gridItem - column object
                     // $columnName - the name of this column (ie, name)
-                    return str_limit($gridItem->{$columnName}, 40);
+                    return str_limit($gridItem->{$columnName}, 60);
                 },
                 "filter" => ["enabled" => false, "operator" => "like"],
-                "styles" => ["column" => "w-30"]
+                "styles" => ["column" => "grid-w-30"]
             ],
 		    "created_at" => [
 		        "sort" => false,
@@ -98,14 +93,12 @@ class RolesGrid extends Grid implements RolesGridInterface
     public function setRoutes()
     {
         // searching, sorting and filtering
-        $this->sortRouteName = 'roles.index';
-        $this->searchRoute = 'roles.index';
+        $this->setIndexRouteName('roles.index');
 
         // crud support
-        $this->indexRouteName = 'roles.index';
-        $this->createRouteName = 'roles.create';
-        $this->viewRouteName = 'roles.show';
-        $this->deleteRouteName = 'roles.destroy';
+        $this->setCreateRouteName('roles.create');
+        $this->setViewRouteName('roles.show');
+        $this->setDeleteRouteName('roles.destroy');
     }
 
     /**
@@ -115,10 +108,8 @@ class RolesGrid extends Grid implements RolesGridInterface
     */
     public function getLinkableCallback(): Closure
     {
-        $view = $this->viewRouteName;
-
-        return function ($gridName, $item) use ($view) {
-            return route('dummy.show', ['id' => $item->id]);
+        return function ($gridName, $item) {
+            return route('dummy.show', [$gridName => $item->id]);
         };
     }
 

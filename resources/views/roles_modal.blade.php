@@ -23,7 +23,8 @@
             <label for="input_desc" class="col-sm-3 col-form-label">Description:</label>
             <div class="col-sm-9">
                 <textarea class="form-control" id="input_desc"
-                          name="email" placeholder="Enter description" required>
+                          cols="4"
+                          name="description" placeholder="Enter description" required>
                     {{ isset($role) ? $role->description : old('description') }}
                 </textarea>
             </div>
