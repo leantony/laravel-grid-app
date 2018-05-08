@@ -36,7 +36,7 @@ class RolesController extends Controller
      */
     public function create(Request $request)
     {
-        $data = [
+        $modal = [
             'model' => class_basename(Role::class),
             'route' => route('roles.store'),
             'action' => 'create',
@@ -44,7 +44,7 @@ class RolesController extends Controller
         ];
 
         // modal
-        return view('roles_modal', $data)->render();
+        return view('roles_modal', compact('modal'))->render();
     }
 
     /**
@@ -80,17 +80,16 @@ class RolesController extends Controller
     {
         $role = Role::with('users')->findOrFail($id);
 
-        $data = [
+        $modal = [
             'model' => class_basename(Role::class),
             'route' => route('roles.update', ['user' => $role->id]),
-            'role' => $role,
             'pjaxContainer' => $request->get('ref'),
             'method' => 'patch',
             'action' => 'update'
         ];
 
         // modal
-        return view('roles_modal', $data)->render();
+        return view('roles_modal', compact('modal', 'role'))->render();
     }
 
     /**

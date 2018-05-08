@@ -35,7 +35,7 @@ class UsersController extends Controller
      */
     public function create(Request $request)
     {
-        $data = [
+        $modal = [
             'model' => class_basename(User::class),
             'route' => route('users.store'),
             'action' => 'create',
@@ -43,7 +43,7 @@ class UsersController extends Controller
         ];
 
         // modal
-        return view('users_modal', $data)->render();
+        return view('users_modal', compact('modal'))->render();
     }
 
     /**
@@ -85,17 +85,16 @@ class UsersController extends Controller
     {
         $user = User::query()->findOrFail($id);
 
-        $data = [
+        $modal = [
             'model' => class_basename(User::class),
             'route' => route('users.update', ['user' => $user->id]),
-            'user' => $user,
             'pjaxContainer' => $request->get('ref'),
             'method' => 'patch',
             'action' => 'update'
         ];
 
         // modal
-        return view('users_modal', $data)->render();
+        return view('users_modal', compact('modal', 'user'))->render();
     }
 
     /**

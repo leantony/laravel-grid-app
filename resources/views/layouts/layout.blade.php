@@ -37,7 +37,7 @@
             <a class="nav-link" href="{{ url('https://packagist.org/packages/leantony/laravel-grid') }}">Packagist</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ url('https://github.com/leantony/laravel-grid/wiki') }}">Docs</a>
+            <a class="nav-link" href="{{ url('https://leantony.github.io/laravel-grid') }}">Docs</a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
