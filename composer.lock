@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "4a334799cbb5d390fcd10654d960fbce",
@@ -609,16 +609,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.6.21",
+            "version": "v5.6.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "458a89b1c5ff73072c27308566f444c790f76f28"
+                "reference": "637fd797a6dde8d24a9f07da77e375ec251c5d24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/458a89b1c5ff73072c27308566f444c790f76f28",
-                "reference": "458a89b1c5ff73072c27308566f444c790f76f28",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/637fd797a6dde8d24a9f07da77e375ec251c5d24",
+                "reference": "637fd797a6dde8d24a9f07da77e375ec251c5d24",
                 "shasum": ""
             },
             "require": {
@@ -744,7 +744,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-05-08T13:30:15+00:00"
+            "time": "2018-05-15T13:34:20+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -899,12 +899,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/leantony/laravel-grid.git",
-                "reference": "088007b1ae430045f88fff0a74f6922a1ba297dd"
+                "reference": "7291c382b84ac67e09299db5fc23aae9404adc6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leantony/laravel-grid/zipball/088007b1ae430045f88fff0a74f6922a1ba297dd",
-                "reference": "088007b1ae430045f88fff0a74f6922a1ba297dd",
+                "url": "https://api.github.com/repos/leantony/laravel-grid/zipball/7291c382b84ac67e09299db5fc23aae9404adc6e",
+                "reference": "7291c382b84ac67e09299db5fc23aae9404adc6e",
                 "shasum": ""
             },
             "require": {
@@ -929,7 +929,10 @@
                 "laravel": {
                     "providers": [
                         "Leantony\\Grid\\Providers\\GridServiceProvider"
-                    ]
+                    ],
+                    "aliases": {
+                        "Modal": "Leantony\\Grid\\Facades\\Modal"
+                    }
                 }
             },
             "autoload": {
@@ -960,7 +963,7 @@
                 "leantony",
                 "pjax"
             ],
-            "time": "2018-05-08T21:59:59+00:00"
+            "time": "2018-05-15T14:44:53+00:00"
         },
         {
             "name": "maatwebsite/excel",
