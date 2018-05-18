@@ -91,6 +91,9 @@ class UsersGrid extends Grid implements UsersGridInterface
         $this->setCreateRouteName('users.create');
         $this->setViewRouteName('users.show');
         $this->setDeleteRouteName('users.destroy');
+
+        // default route parameter
+        $this->setDefaultRouteParameter('id');
     }
 
     /**
@@ -112,7 +115,13 @@ class UsersGrid extends Grid implements UsersGridInterface
     */
     public function configureButtons()
     {
-        //
+        // call `addRowButton` to add a row button
+        // call `addToolbarButton` to add a toolbar button
+        // call `makeCustomButton` to do either of the above, but passing in the button properties as an array
+
+        // call `editToolbarButton` to edit a toolbar button
+        // call `editRowButton` to edit a row button
+        // call `editButtonProperties` to do either of the above. All the edit functions accept the properties as an array
     }
 
     /**
@@ -124,6 +133,8 @@ class UsersGrid extends Grid implements UsersGridInterface
     public function getRowCssStyle(): Closure
     {
         return function ($gridName, $item) {
+            // e.g, to add a success class to specific table rows;
+            // return $item->id % 2 === 0 ? 'table-success' : '';
             return "";
         };
     }

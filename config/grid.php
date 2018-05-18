@@ -138,7 +138,7 @@ return [
         /**
          * Pagination function to use. Supply either 'default' or 'simple'
          */
-        'type' => 'default',
+        'type' => 'simple',
 
         /**
          * The view used to render default pagination.

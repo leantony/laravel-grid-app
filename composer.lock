@@ -748,16 +748,16 @@
         },
         {
             "name": "laravel/tinker",
-            "version": "v1.0.6",
+            "version": "v1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/tinker.git",
-                "reference": "b22fe905fcefdffae76b011e27c7ac09e07e052b"
+                "reference": "e3086ee8cb1f54a39ae8dcb72d1c37d10128997d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/tinker/zipball/b22fe905fcefdffae76b011e27c7ac09e07e052b",
-                "reference": "b22fe905fcefdffae76b011e27c7ac09e07e052b",
+                "url": "https://api.github.com/repos/laravel/tinker/zipball/e3086ee8cb1f54a39ae8dcb72d1c37d10128997d",
+                "reference": "e3086ee8cb1f54a39ae8dcb72d1c37d10128997d",
                 "shasum": ""
             },
             "require": {
@@ -807,7 +807,7 @@
                 "laravel",
                 "psysh"
             ],
-            "time": "2018-04-16T12:10:37+00:00"
+            "time": "2018-05-17T13:42:07+00:00"
         },
         {
             "name": "league/flysystem",
@@ -899,12 +899,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/leantony/laravel-grid.git",
-                "reference": "d0384793042ec5a9aab0682b9afefb5a0e967ff0"
+                "reference": "62dda2e0ebd5dd9b0486df52bd213a0740e3a285"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leantony/laravel-grid/zipball/d0384793042ec5a9aab0682b9afefb5a0e967ff0",
-                "reference": "d0384793042ec5a9aab0682b9afefb5a0e967ff0",
+                "url": "https://api.github.com/repos/leantony/laravel-grid/zipball/62dda2e0ebd5dd9b0486df52bd213a0740e3a285",
+                "reference": "62dda2e0ebd5dd9b0486df52bd213a0740e3a285",
                 "shasum": ""
             },
             "require": {
@@ -918,6 +918,7 @@
             },
             "require-dev": {
                 "orchestra/testbench": "~3.0",
+                "orchestra/testbench-dusk": "^3.5",
                 "phpunit/phpunit": "~7.0"
             },
             "suggest": {
@@ -963,7 +964,7 @@
                 "leantony",
                 "pjax"
             ],
-            "time": "2018-05-16T14:41:05+00:00"
+            "time": "2018-05-21T07:42:28+00:00"
         },
         {
             "name": "maatwebsite/excel",

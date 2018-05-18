@@ -99,6 +99,9 @@ class RolesGrid extends Grid implements RolesGridInterface
         $this->setCreateRouteName('roles.create');
         $this->setViewRouteName('roles.show');
         $this->setDeleteRouteName('roles.destroy');
+
+        // default route parameter
+        $this->setDefaultRouteParameter('id');
     }
 
     /**
@@ -120,10 +123,13 @@ class RolesGrid extends Grid implements RolesGridInterface
     */
     public function configureButtons()
     {
-        $this->editRowButton('view', [
-            'pjaxEnabled' => false,
-            'showModal' => false
-        ]);
+        // call `addRowButton` to add a row button
+        // call `addToolbarButton` to add a toolbar button
+        // call `makeCustomButton` to do either of the above, but passing in the button properties as an array
+
+        // call `editToolbarButton` to edit a toolbar button
+        // call `editRowButton` to edit a row button
+        // call `editButtonProperties` to do either of the above. All the edit functions accept the properties as an array
     }
 
     /**
@@ -135,8 +141,9 @@ class RolesGrid extends Grid implements RolesGridInterface
     public function getRowCssStyle(): Closure
     {
         return function ($gridName, $item) {
-            // in this case, we check if the id is an even number and apply a class dynamically.
-            return $item->id % 2 === 0 ? 'table-success' : '';
+            // e.g, to add a success class to specific table rows;
+            // return $item->id % 2 === 0 ? 'table-success' : '';
+            return "";
         };
     }
 }
