@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4a334799cbb5d390fcd10654d960fbce",
+    "content-hash": "a463b838943a8fde15e5930b131151db",
     "packages": [
         {
             "name": "avengers/bootforms",
@@ -895,16 +895,16 @@
         },
         {
             "name": "leantony/laravel-grid",
-            "version": "2.0.x-dev",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/leantony/laravel-grid.git",
-                "reference": "62dda2e0ebd5dd9b0486df52bd213a0740e3a285"
+                "reference": "67213b2ffc85312a696675926930db12a4623817"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/leantony/laravel-grid/zipball/62dda2e0ebd5dd9b0486df52bd213a0740e3a285",
-                "reference": "62dda2e0ebd5dd9b0486df52bd213a0740e3a285",
+                "url": "https://api.github.com/repos/leantony/laravel-grid/zipball/67213b2ffc85312a696675926930db12a4623817",
+                "reference": "67213b2ffc85312a696675926930db12a4623817",
                 "shasum": ""
             },
             "require": {
@@ -964,7 +964,7 @@
                 "leantony",
                 "pjax"
             ],
-            "time": "2018-05-21T07:42:28+00:00"
+            "time": "2018-05-21T08:57:46+00:00"
         },
         {
             "name": "maatwebsite/excel",
@@ -4693,9 +4693,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "leantony/laravel-grid": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
