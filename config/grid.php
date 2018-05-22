@@ -33,12 +33,6 @@ return [
          * The query parameter supplied to indicate a sort direction
          */
         'dir_param' => 'sort_dir',
-
-        /**
-         * Valid sort directions
-         */
-        'valid_directions' => ['asc', 'desc']
-
     ],
 
     /**
@@ -62,9 +56,9 @@ return [
         ],
 
         /**
-         * Max allowed export rows. Will apply to json and html export options
+         * Export chunk size
          */
-        'max_rows' => 5000
+        'chunk_size' => 200
     ],
 
     /**
@@ -138,7 +132,7 @@ return [
         /**
          * Pagination function to use. Supply either 'default' or 'simple'
          */
-        'type' => 'simple',
+        'type' => 'default',
 
         /**
          * The view used to render default pagination.
