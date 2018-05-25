@@ -55,7 +55,8 @@ class UsersGrid extends Grid implements UsersGridInterface
             ],
             "email" => [
                 "search" => ["enabled" => true],
-                "filter" => ["enabled" => true, "operator" => "="]
+                "filter" => ["enabled" => true, "operator" => "="],
+                "styles" => ["column" => "success"]
             ],
             "created_at" => [
                 "sort" => false, "date" => true,
@@ -135,7 +136,7 @@ class UsersGrid extends Grid implements UsersGridInterface
         return function ($gridName, $item) {
             // e.g, to add a success class to specific table rows;
             // return $item->id % 2 === 0 ? 'table-success' : '';
-            return "";
+            return $item->id % 3 === 0 ? 'table-success' : '';
         };
     }
 }

@@ -21,9 +21,7 @@ class RolesGrid extends Grid implements RolesGridInterface
      */
     protected $buttonsToGenerate = [
         'create',
-        'view',
-        'refresh',
-        'export'
+        'refresh'
     ];
 
     /**
@@ -142,8 +140,7 @@ class RolesGrid extends Grid implements RolesGridInterface
     {
         return function ($gridName, $item) {
             // e.g, to add a success class to specific table rows;
-            // return $item->id % 2 === 0 ? 'table-success' : '';
-            return "";
+             return $item->id % 2 === 0 ? 'table-success' : '';
         };
     }
 }
